@@ -5,7 +5,9 @@
   "main": "cmd/main.js",
   "scripts": {
     "test": "jest .test --watch",
-    "buildCMD": "npx webpack --config webpack.cmd.config.js"
+    "buildCMD": "npx webpack --config webpack.cmd.config.js",
+    "runDriverCommands": "node ./index.js runDriverCommandsFromFile",
+    "buildAndRun": "npm run buildCMD && npm run runDriverCommands"
   },
   "repository": {
     "type": "git",

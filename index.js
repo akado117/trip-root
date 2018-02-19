@@ -1,13 +1,13 @@
 const program = require('commander');
 const { prompt } = require('inquirer');
 const fs = require('fs');
-const Main = require("./cmd/main");
+const Main = require('./cmd/main').default;
 
 const questions = [
     {
         type : 'input',
         name : 'fileName',
-        message : 'Please enter relative path to commands file'
+        message : 'Please enter relative path to commands file (example "./test.txt")'
     }
 ];
 
@@ -16,14 +16,17 @@ program
     .description('Trip Aggregator');
 
 program
-    .command('searchFileForWords')
-    .alias('s')
-    .description('Search File For Words')
+    .command('runDriverCommandsFromFile')
+    .alias('r')
+    .description('Runs commands from given file')
     .action(() => {
         prompt(questions).then((answers) => {
             try {
+                console.log('Your File Path:', answers.fileName);
                 const data = fs.readFileSync(answers.fileName, 'utf8').toString();
-                searchForWords(data);
+                console.log('First line of file: ', data.split(/\r?\n/)[0]);
+                const main = new Main();
+                console.log(main.main(data));
             } catch (err) {
                 console.error(err);
             }

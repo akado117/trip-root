@@ -186,6 +186,12 @@ var Main = function () {
                 }
             });
         }
+    }, {
+        key: 'main',
+        value: function main(inputString) {
+            this.applyCommandsArray(this.parseFileInput(inputString));
+            return this.parseDriverAveragesToString(this.getDriverAverages());
+        }
     }]);
 
     return Main;

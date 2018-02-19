@@ -61,10 +61,10 @@ export default class Main {
     }
     applyCommandsArray(commandArray) {
         commandArray.forEach((command) => {
-            if (command[0] === commandConstants.TRIP) {
+            if (command[0].toLowerCase() === commandConstants.TRIP) {
                 this.onTripCommand(command[1], command[2], command[3], command[4]);
             }
-            if (command[0] === commandConstants.DRIVER) {
+            if (command[0].toLowerCase() === commandConstants.DRIVER) {
                 this.onDriveCommand(command[1]);
             }
         });

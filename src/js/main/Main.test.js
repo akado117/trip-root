@@ -141,8 +141,22 @@ describe('Main Class', () => {
                 expect(main.onTripCommand.mock.calls[0][i]).toBe(input[0][i + 1]);
             }
         });
+        it('should call onTripCommand for any commands that contain the trip command even if case is different', () => {
+            const input = [['tRiP', 'dan', 'davito', 'is', 'sunny']];
+            main.applyCommandsArray(input);
+
+            for (let i = 0; i < 4; i++) {
+                expect(main.onTripCommand.mock.calls[0][i]).toBe(input[0][i + 1]);
+            }
+        });
         it('should call onDriveCommand for any commands that contain the driver command', () => {
             const input = [['driver', 'dan']];
+            main.applyCommandsArray(input);
+
+            expect(main.onDriveCommand.mock.calls[0][0]).toBe(input[0][1]);
+        });
+        it('should call onDriveCommand for any commands that contain the driver command even if case is different', () => {
+            const input = [['Driver', 'dan']];
             main.applyCommandsArray(input);
 
             expect(main.onDriveCommand.mock.calls[0][0]).toBe(input[0][1]);
