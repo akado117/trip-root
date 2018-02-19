@@ -20,6 +20,12 @@ describe('Trip Class', () => {
             expect(trip.trips).toEqual(new Map());
         })
     });
+    describe('getName', () => {
+        it('should return name contained within instantiated Trip object', () => {
+            const trip = new Trip('Some name')
+            expect(trip.getName()).toBe('Some name');
+        })
+    })
     describe('addTrip', () => {
         const tripData = {
             startTime: "12:45",

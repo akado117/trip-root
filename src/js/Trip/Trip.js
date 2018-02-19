@@ -5,6 +5,9 @@ export default class Trip {
         this.name = name || ""
         this.trips = new Map();
     }
+    getName() {
+        return this.name;
+    }
     addTrip(tripData) {
         const { startTime, stopTime, distance } = tripData;
         if (!startTime || !stopTime || !distance) return false
