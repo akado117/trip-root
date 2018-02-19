@@ -17,5 +17,10 @@ describe('Main Class', () => {
             expect(main.parseFileInput(sampleInput).length).toBe(6);
             expect(main.parsedInput.length).toBe(6);
         });
+        it('should parse each line of commands into an array of values', () => {
+            expect(main.parseFileInput(sampleInput)[0].length).toBe(2);
+            expect(main.parseFileInput(sampleInput)[4].length).toBe(5);
+            expect(main.parsedInput.length).toBe(6);
+        });
     });
 });

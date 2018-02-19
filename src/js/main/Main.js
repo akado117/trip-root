@@ -5,8 +5,10 @@ export default class Main {
     parseFileInput(inputString) {
         const splitCommands = inputString.split(/\r?\n/);
 
-        this.parsedInput = splitCommands;
+        const finalSplitCommands = splitCommands.map(command => command.split(' '));
 
-        return splitCommands;
+        this.parsedInput = finalSplitCommands;
+
+        return finalSplitCommands;
     }
 }
