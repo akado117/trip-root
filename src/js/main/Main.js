@@ -2,7 +2,7 @@ import Trip from '../driver/Driver';
 
 const commandConstants = {
     DRIVER: 'driver',
-    TRIP: 'driver',
+    TRIP: 'trip',
 };
 
 export default class Main {
@@ -58,5 +58,15 @@ export default class Main {
         });
 
         return driverAveragesString;
+    }
+    applyCommandsArray(commandArray) {
+        commandArray.forEach((command) => {
+            if (command[0] === commandConstants.TRIP) {
+                this.onTripCommand(command[1], command[2], command[3], command[4]);
+            }
+            if (command[0] === commandConstants.DRIVER) {
+                this.onDriveCommand(command[1]);
+            }
+        });
     }
 }

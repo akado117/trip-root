@@ -120,4 +120,22 @@ describe('Main Class', () => {
             expect(parsedOutput).toBe('ben: 14 mile @ 30 mph\nbob: 25 mile @ 60 mph');
         });
     });
+    describe('applyCommandsArray', () => {
+        beforeEach(() => {
+            main.onDriveCommand = jest.fn();
+            main.onTripCommand = jest.fn();
+        });
+        it('should not call any commands if the commands fed in don\'t exist', () => {
+            main.applyCommandsArray([]);
+            expect(main.onDriveCommand).toHaveBeenCalledTimes(0);
+            expect(main.onTripCommand).toHaveBeenCalledTimes(0);
+        });
+        it('should call onTripCommand for any commands that contain the trip command', () => {
+            const input = [['trip', 'dan', 'davito', 'is', 'sunny']];
+            main.applyCommandsArray(input);
+            for (let i = 0; i < 4; i++) {
+                expect(main.onTripCommand.mock.calls[0][i]).toBe(input[0][i + 1]);
+            }
+        });
+    });
 });
