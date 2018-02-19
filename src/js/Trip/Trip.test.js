@@ -6,5 +6,10 @@ describe('Trip Class', () => {
             const trip = new Trip()
             expect(trip.name).toBe('');
         })
+        it('should set variable passed in as this.name', () => {
+            const trip = new Trip('Some name')
+            expect(trip.name).toBe('Some name');
+        })
+
     });
 })
