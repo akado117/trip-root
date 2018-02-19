@@ -1,8 +1,8 @@
-import Trip from '../trip/Trip';
+import Trip from '../driver/Driver';
 
 const commandConstants = {
     DRIVER: 'driver',
-    TRIP: 'trip',
+    TRIP: 'driver',
 };
 
 export default class Main {

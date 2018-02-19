@@ -8,7 +8,7 @@
 5. A non-transpiled file will be used to consume transpiled npm package and expose to node command line
 6. Jest is used in a TDD methodology to build out this project.
 
-### Trip Class Outline
+### Driver Class Outline
 * name - Name of trip owner
 * trips - Map of trip objects (in order of read, but if there was some better index available to store by. Store by said index for easier referencing)
   * tripObjects - startTime, stopTime, distance, travelTime (calculated when added)

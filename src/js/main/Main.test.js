@@ -1,7 +1,7 @@
 import Main from './Main';
-import Trip from '../trip/Trip';
+import Trip from '../driver/Driver';
 
-jest.mock('../trip/Trip', () => {
+jest.mock('../driver/Driver', () => {
     return jest.fn().mockImplementation(() => {
         return {};
         // Now we can track calls to playSoundFile
@@ -21,8 +21,8 @@ describe('Main Class', () => {
         });
     });
     describe('parseFileInput', () => {
-        const sampleInput = 'Driver Dan\nDriver Alex\nDriver Bob\nTrip Dan 07:15 07:45 17.3\nTrip Dan 06:12 06:32 21.8\n' +
-            'Trip Alex 12:01 13:16 42.0';
+        const sampleInput = 'Driver Dan\nDriver Alex\nDriver Bob\nDriver Dan 07:15 07:45 17.3\nDriver Dan 06:12 06:32 21.8\n' +
+            'Driver Alex 12:01 13:16 42.0';
         it('should parse input so each new line is a new string in an array and set it to internal state', () => {
             expect(main.parseFileInput(sampleInput).length).toBe(6);
             expect(main.parsedInput.length).toBe(6);
@@ -34,12 +34,12 @@ describe('Main Class', () => {
         });
     });
     describe('onDriveCommand', () => {
-        it('should create a new instance of Trip with the passed in name and add it to trips map by its name', () => {
+        it('should create a new instance of Driver with the passed in name and add it to trips map by its name', () => {
             main.onDriveCommand('spencer');
             expect(Trip).toHaveBeenCalledTimes(1);
             expect(Trip).toHaveBeenCalledWith('spencer');
         });
-        it('should add created trip object to internal trips object', () => {
+        it('should add created driver object to internal trips object', () => {
             main.onDriveCommand('spencer');
             expect(main.trips.size).toBe(1);
             main.onDriveCommand('bob');

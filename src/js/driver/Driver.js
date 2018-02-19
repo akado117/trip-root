@@ -1,6 +1,6 @@
 import differenceInMinutes from 'date-fns/difference_in_minutes';
 
-export default class Trip {
+export default class Driver {
     constructor(name) {
         this.name = name || '';
         this.trips = new Map();
