@@ -45,5 +45,11 @@ describe('Main Class', () => {
             main.onDriveCommand('bob');
             expect(main.trips.size).toBe(2);
         });
+        it('added check to make sure onDriveCommand doesn\'t overwrite members that already exist', () => {
+            main.onDriveCommand('spencer');
+            const firstTrip = main.trips.get('spencer');
+            main.onDriveCommand('spencer');
+            expect(main.trips.get('spencer')).toBe(firstTrip);
+        });
     });
 });

@@ -19,6 +19,6 @@ export default class Main {
         return finalSplitCommands;
     }
     onDriveCommand(name) {
-        this.trips.set(name, new Trip(name));
+        if (!this.trips.get(name)) this.trips.set(name, new Trip(name));
     }
 }
