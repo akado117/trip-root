@@ -19,4 +19,12 @@ export default class Trip {
 
         return tripToSet;
     }
+    getTotalDistance() {
+        let totalDistance = 0;
+        this.trips.forEach((tripObj) => {
+            totalDistance += tripObj.distance || 0;
+        })
+
+        return totalDistance;
+    }
 }

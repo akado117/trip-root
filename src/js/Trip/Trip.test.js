@@ -2,9 +2,14 @@ import { cloneDeep } from 'lodash';
 import Trip from './Trip';
 
 describe('Trip Class', () => {
-    let tripObj;
+    let tripObj, tripData;
     beforeEach(() => {
         tripObj = new Trip('Brian');
+        tripData = {
+            startTime: "12:45",
+            stopTime: "14:15",
+            distance: 43,
+        }
     })
     describe('Constructor', () => {
         it('should set empty string to this.name if no string fed in', () => {
@@ -27,11 +32,6 @@ describe('Trip Class', () => {
         })
     })
     describe('addTrip', () => {
-        const tripData = {
-            startTime: "12:45",
-            stopTime: "14:15",
-            distance: 43,
-        }
         it('should return false if any prop missing in tripObj passed in', () => {
             let tripClone = cloneDeep(tripData)
             delete tripClone.startTime;
@@ -54,6 +54,15 @@ describe('Trip Class', () => {
             let tripClone = cloneDeep(tripData)
             tripClone.travelTime = 90
             expect(tripObj.addTrip(tripData)).toEqual(tripClone)
+        })
+    })
+    describe('getTotalDistance', () => {
+        it('should return total distance of trips within Trip object', () => {
+            const tripClone = cloneDeep(tripData);
+            tripClone.travelTime = 90;
+            tripObj.trips = new Map([[0, tripClone], [1, tripClone]])
+
+            expect(tripObj.getTotalDistance()).toBe(86);
         })
     })
 })
