@@ -23,7 +23,7 @@ describe('Trip Class', () => {
     describe('addTrip', () => {
         const tripData = {
             startTime: "12:45",
-            stopTime: "14:45",
+            stopTime: "14:15",
             distance: 43,
         }
         it('should return false if any prop missing in tripObj passed in', () => {
@@ -38,9 +38,16 @@ describe('Trip Class', () => {
             expect(tripObj.addTrip(tripClone)).toBe(false)
         })
         it('should set trip to map and pass back trip that was set if successful', () => {
-            expect(tripObj.addTrip(tripData)).toEqual(tripData)
+            let tripClone = cloneDeep(tripData)
+            tripClone.travelTime = 90
+            expect(tripObj.addTrip(tripData)).toEqual(tripClone)
             expect(tripObj.addTrip(tripData)).not.toBe(tripData)
-            expect(tripObj.trips.get(0)).toEqual(tripData)
+            expect(tripObj.trips.get(0)).toEqual(tripClone)
+        })
+        it('should added calculated time to travelTime prop before setting to trips map', () => {
+            let tripClone = cloneDeep(tripData)
+            tripClone.travelTime = 90
+            expect(tripObj.addTrip(tripData)).toEqual(tripClone)
         })
     })
 })
