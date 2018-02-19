@@ -37,5 +37,10 @@ describe('Trip Class', () => {
             delete tripClone.distance;
             expect(tripObj.addTrip(tripClone)).toBe(false)
         })
+        it('should set trip to map and pass back trip that was set if successful', () => {
+            expect(tripObj.addTrip(tripData)).toEqual(tripData)
+            expect(tripObj.addTrip(tripData)).not.toBe(tripData)
+            expect(tripObj.trips.get(0)).toEqual(tripData)
+        })
     })
 })

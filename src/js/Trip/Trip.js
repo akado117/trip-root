@@ -6,5 +6,10 @@ export default class Trip {
     addTrip(tripData) {
         const { startTime, stopTime, distance } = tripData;
         if (!startTime || !stopTime || !distance) return false
+
+        const tripToSet = { startTime, stopTime, distance };
+        this.trips.set(this.trips.size, tripToSet);
+
+        return tripToSet;
     }
 }
