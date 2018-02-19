@@ -3,4 +3,8 @@ export default class Trip {
         this.name = name || ""
         this.trips = new Map();
     }
+    addTrip(tripData) {
+        const { startTime, stopTime, distance } = tripData;
+        if (!startTime || !stopTime || !distance) return false
+    }
 }
