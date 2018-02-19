@@ -148,4 +148,19 @@ describe('Main Class', () => {
             expect(main.onDriveCommand.mock.calls[0][0]).toBe(input[0][1]);
         });
     });
+    describe('main', () => {
+        beforeEach(() => {
+            main.parseFileInput = jest.fn().mockReturnValue('parsed File');
+            main.applyCommandsArray = jest.fn();
+            main.getDriverAverages = jest.fn().mockReturnValue(['driver', 'averages']);
+            main.parseDriverAveragesToString = jest.fn();
+        });
+        it('should call all internal commands needed to run program', () => {
+            main.main('hot sauce');
+            expect(main.parseFileInput).toHaveBeenCalledWith('hot sauce');
+            expect(main.applyCommandsArray).toHaveBeenCalledWith('parsed File');
+            expect(main.getDriverAverages).toHaveBeenCalledTimes(1);
+            expect(main.parseDriverAveragesToString).toHaveBeenCalledWith(['driver', 'averages']);
+        });
+    });
 });

@@ -69,4 +69,8 @@ export default class Main {
             }
         });
     }
+    main(inputString) {
+        this.applyCommandsArray(this.parseFileInput(inputString));
+        return this.parseDriverAveragesToString(this.getDriverAverages());
+    }
 }
