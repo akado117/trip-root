@@ -9,20 +9,20 @@ module.exports = {
     "rules": {
         "indent": ["error", 4],
         "import/imports-first": "off",
-        "react/sort-comp": "off",
+        //"react/sort-comp": "off",
         "spaced-comment": "off",
-        "react/jsx-indent": [2, 4],
-        "react/jsx-curly-spacing": "off",
+        //"react/jsx-indent": [2, 4],
+        //"react/jsx-curly-spacing": "off",
         "max-len": "off",
-        "react/jsx-indent-props": "off",
+        // "react/jsx-indent-props": "off",
         "eol-last": "off",
         "class-methods-use-this": "off",
-        "react/jsx-filename-extension": "off",
-        "jsx-a11y/no-static-element-interactions": "off",
+        // "react/jsx-filename-extension": "off",
+        // "jsx-a11y/no-static-element-interactions": "off",
         "no-underscore-dangle": "off",
         "new-cap": "off",
-        "react/no-string-refs": 1,
-        "react/no-unused-prop-types": [2, { "skipShapeProps": true }],
+       // "react/no-string-refs": 1,
+        //"react/no-unused-prop-types": [2, { "skipShapeProps": true }],
         "no-const-assign": 2,
         "no-duplicate-imports": 2,
         "prefer-const": 2,
@@ -38,11 +38,11 @@ module.exports = {
         "import/no-named-as-default": "off",
         "linebreak-style": "off"
     },
-    "settings": {
-        "react": {
-            "pragma": "React",
-        },
-    },
+    // "settings": {
+    //     "react": {
+    //         "pragma": "React",
+    //     },
+    // },
     "extends": "airbnb",
     "parser": "babel-eslint",
     "parserOptions": {
@@ -50,12 +50,12 @@ module.exports = {
         "sourceType": "module",
         "ecmaFeatures": {
             "experimentalObjectRestSpread": true,
-            "jsx": true,
+            // "jsx": true,
         },
     },
     "plugins": [
-        "react",
-        "jsx-a11y",
+        // "react",
+        // "jsx-a11y",
         "import",
     ],
 };
