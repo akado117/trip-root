@@ -30,7 +30,7 @@ describe('Trip Class', () => {
         });
     });
     describe('getName', () => {
-        it('should return name contained within instantiated Trip object', () => {
+        it('should return name contained within instantiated trip object', () => {
             const trip = new Trip('Some name');
             expect(trip.getName()).toBe('Some name');
         });
@@ -61,7 +61,7 @@ describe('Trip Class', () => {
         });
     })
     describe('getTotalDistance', () => {
-        it('should return total distance of trips within Trip object, and set it to this.totalTravelDistance', () => {
+        it('should return total distance of trips within trip object, and set it to this.totalTravelDistance', () => {
             tripObj.trips = new Map([[0, tripData], [1, tripData]]);
 
             expect(tripObj.getTotalDistance()).toBe(86);
@@ -69,7 +69,7 @@ describe('Trip Class', () => {
         });
     });
     describe('getAverageSpeed', () => {
-        let tripClone
+        let tripClone;
         beforeEach(() => {
             tripClone = cloneDeep(tripData);
             tripClone.travelTime = 90;

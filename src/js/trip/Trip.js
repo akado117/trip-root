@@ -1,4 +1,4 @@
-import differenceInMinutes from 'date-fns/difference_in_minutes'
+import differenceInMinutes from 'date-fns/difference_in_minutes';
 
 export default class Trip {
     constructor(name) {
