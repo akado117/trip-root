@@ -99,4 +99,11 @@ describe('Main Class', () => {
             expect(mockGetAverageSpeed.mock.calls[1][0]).toBe(25);
         });
     });
+    describe('parseTripAveragesToString', () => {
+        it('should return "No drivers found" if there are no driverAverage objects passed in', () => {
+            expect(main.parseDriverAveragesToString()).toBe('No drivers found');
+            expect(main.parseDriverAveragesToString('adasdasd')).toBe('No drivers found');
+            expect(main.parseDriverAveragesToString([])).toBe('No drivers found');
+        });
+    });
 });

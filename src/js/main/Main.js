@@ -48,4 +48,7 @@ export default class Main {
         });
         return driverAverages.length ? driverAverages : false;
     }
+    parseDriverAveragesToString(driverAverages) {
+        if (typeof driverAverages !== 'object' || !driverAverages.length) return 'No drivers found';
+    }
 }
