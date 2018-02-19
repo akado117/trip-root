@@ -39,5 +39,11 @@ describe('Main Class', () => {
             expect(Trip).toHaveBeenCalledTimes(1);
             expect(Trip).toHaveBeenCalledWith('spencer');
         });
+        it('should add created trip object to internal trips object', () => {
+            main.onDriveCommand('spencer');
+            expect(main.trips.size).toBe(1);
+            main.onDriveCommand('bob');
+            expect(main.trips.size).toBe(2);
+        });
     });
 });
