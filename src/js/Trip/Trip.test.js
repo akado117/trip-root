@@ -74,11 +74,14 @@ describe('Trip Class', () => {
             tripClone = cloneDeep(tripData);
             tripClone.travelTime = 90;
             tripObj.trips = new Map([[0, tripClone], [1, tripClone]]);
-        })
+        });
         it('should use internal totalTravelDistance if not passed in', () => {
             tripObj.totalTravelDistance = 180
 
             expect(tripObj.getAverageSpeed()).toBe(60);
-        })
+        });
+        it('should use passed in totalTravelDistance when passed in', () => {
+            expect(tripObj.getAverageSpeed(90)).toBe(30);
+        });
     });
 });
