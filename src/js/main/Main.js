@@ -7,7 +7,7 @@ const commandConstants = {
 
 export default class Main {
     constructor() {
-        this.trips = new Map();
+        this.drivers = new Map();
     }
     parseFileInput(inputString) {
         const splitCommands = inputString.split(/\r?\n/);
@@ -19,6 +19,11 @@ export default class Main {
         return finalSplitCommands;
     }
     onDriveCommand(name) {
-        if (!this.trips.get(name)) this.trips.set(name, new Trip(name));
+        if (!this.drivers.get(name)) this.drivers.set(name, new Trip(name));
+    }
+
+    onTripCommand(name, startTime, stopTime, distance) {
+        const driver = this.drivers.get(name);
+        if (!driver) return false;
     }
 }

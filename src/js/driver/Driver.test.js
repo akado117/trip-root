@@ -20,9 +20,9 @@ describe('Driver Class', () => {
             const driver = new Driver('Some name');
             expect(driver.name).toBe('Some name');
         });
-        it('should initialize trips Map', () => {
+        it('should initialize drivers Map', () => {
             const driver = new Driver();
-            expect(driver.trips).toEqual(new Map());
+            expect(driver.drivers).toEqual(new Map());
         });
         it('should initialize totalTravelDistance to 0', () => {
             const driver = new Driver();
@@ -52,17 +52,17 @@ describe('Driver Class', () => {
             tripClone.travelTime = 90;
             expect(driverObj.addTrip(tripData)).toEqual(tripClone);
             expect(driverObj.addTrip(tripData)).not.toBe(tripData);
-            expect(driverObj.trips.get(0)).toEqual(tripClone);
+            expect(driverObj.drivers.get(0)).toEqual(tripClone);
         });
-        it('should added calculated time to travelTime prop before setting to trips map', () => {
+        it('should added calculated time to travelTime prop before setting to drivers map', () => {
             let tripClone = cloneDeep(tripData);
             tripClone.travelTime = 90;
             expect(driverObj.addTrip(tripData)).toEqual(tripClone);
         });
     })
     describe('getTotalDistance', () => {
-        it('should return total distance of trips within driver object, and set it to this.totalTravelDistance', () => {
-            driverObj.trips = new Map([[0, tripData], [1, tripData]]);
+        it('should return total distance of drivers within driver object, and set it to this.totalTravelDistance', () => {
+            driverObj.drivers = new Map([[0, tripData], [1, tripData]]);
 
             expect(driverObj.getTotalDistance()).toBe(86);
             expect(driverObj.totalTravelDistance).toBe(86);
@@ -73,7 +73,7 @@ describe('Driver Class', () => {
         beforeEach(() => {
             tripClone = cloneDeep(tripData);
             tripClone.travelTime = 90;
-            driverObj.trips = new Map([[0, tripClone], [1, tripClone]]);
+            driverObj.drivers = new Map([[0, tripClone], [1, tripClone]]);
         });
         it('should use internal totalTravelDistance if not passed in', () => {
             driverObj.totalTravelDistance = 180
