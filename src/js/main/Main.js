@@ -34,4 +34,18 @@ export default class Main {
         driver.addTrip(tripObj);
         return tripObj;
     }
+    getDriverAverages() {
+        const driverAverages = [];
+        this.drivers.forEach((driver, key) => {
+            const totalDistance = driver.getTotalDistance();
+            const averageSpeed = driver.getAverageSpeed(totalDistance);
+
+            driverAverages.push({
+                name: key,
+                totalDistance,
+                averageSpeed,
+            });
+        });
+        return driverAverages.length ? driverAverages : false;
+    }
 }

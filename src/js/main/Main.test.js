@@ -1,11 +1,15 @@
 import Main from './Main';
 import Trip from '../driver/Driver';
 const mockAddTrip = jest.fn();
+const mockGetTotalDistance = jest.fn().mockReturnValue(25);
+const mockGetAverageSpeed = jest.fn().mockReturnValue(60);
 
 jest.mock('../driver/Driver', () => {
     return jest.fn().mockImplementation(() => {
         return {
             addTrip: mockAddTrip,
+            getTotalDistance: mockGetTotalDistance,
+            getAverageSpeed: mockGetAverageSpeed,
         };
         // Now we can track calls to playSoundFile
     });
@@ -18,6 +22,8 @@ describe('Main Class', () => {
         main = new Main();
         Trip.mockClear();
         mockAddTrip.mockClear();
+        mockGetTotalDistance.mockClear();
+        mockGetAverageSpeed.mockClear();
     });
     describe('constructor', () => {
         it('instantiating the class should initialize drivers to be a map', () => {
@@ -71,6 +77,26 @@ describe('Main Class', () => {
             expect(mockAddTrip).toHaveBeenCalledWith(fakeData);
             expect(main.onTripCommand('bob', fakeData.startTime, fakeData.stopTime, fakeData.distance)).toEqual(fakeData);
             expect(mockAddTrip).toHaveBeenCalledTimes(2);
+        });
+    });
+    describe('getDriverAverages', () => {
+        it('should call getTotalDistance and getDriverAverages on each driver in drivers', () => {
+            const expectedOutput = [{
+                name: 'ben',
+                totalDistance: 25,
+                averageSpeed: 60,
+            },{
+                name: 'bob',
+                totalDistance: 25,
+                averageSpeed: 60,
+            }];
+            main.drivers = new Map([['ben', new Trip()], ['bob', new Trip()]]);
+
+            expect(main.getDriverAverages()).toEqual(expectedOutput);
+
+            expect(mockGetTotalDistance).toHaveBeenCalledTimes(2);
+            expect(mockGetAverageSpeed.mock.calls[0][0]).toBe(25);
+            expect(mockGetAverageSpeed.mock.calls[1][0]).toBe(25);
         });
     });
 });
