@@ -4,6 +4,7 @@ export default class Trip {
     constructor(name) {
         this.name = name || ""
         this.trips = new Map();
+        this.totalTravelDistance = 0;
     }
     getName() {
         return this.name;
@@ -22,9 +23,22 @@ export default class Trip {
     getTotalDistance() {
         let totalDistance = 0;
         this.trips.forEach((tripObj) => {
-            totalDistance += tripObj.distance || 0;
+            totalDistance += tripObj.distance; //distance should never be undefined because we make sure it exists before adding to this.trips
         })
 
+        this.totalTravelDistance = totalDistance;
+
         return totalDistance;
+    }
+
+    getAverageSpeed(totalTravelDistance) {
+        let totalTime = 0;
+        this.trips.forEach((tripObj) => {
+            totalTime += tripObj.travelTime || 0;
+        })
+
+        totalTime = totalTime / 60; //convert to hours
+
+        return (totalTravelDistance || this.totalTravelDistance) / totalTime
     }
 }
