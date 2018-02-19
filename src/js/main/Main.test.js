@@ -1,9 +1,12 @@
 import Main from './Main';
 import Trip from '../driver/Driver';
+const mockAddTrip = jest.fn();
 
 jest.mock('../driver/Driver', () => {
     return jest.fn().mockImplementation(() => {
-        return {};
+        return {
+            addTrip: mockAddTrip,
+        };
         // Now we can track calls to playSoundFile
     });
 });
@@ -14,6 +17,7 @@ describe('Main Class', () => {
     beforeEach(() => {
         main = new Main();
         Trip.mockClear();
+        mockAddTrip.mockClear();
     });
     describe('constructor', () => {
         it('instantiating the class should initialize drivers to be a map', () => {
@@ -53,8 +57,20 @@ describe('Main Class', () => {
         });
     });
     describe('onTripCommand', () => {
-        it('if driver doesn\'t exist then return false', () => {
+        it('should return false if driver doesn\'t exist then ', () => {
             expect(main.onTripCommand('john', 'doe', 'tho', 'beu')).toBe(false);
+        });
+        it('should call add trip on driver object with data passed in', () => {
+            const fakeData = {
+                startTime: 'bob',
+                stopTime: 'the',
+                distance: 'builder',
+            };
+            main.drivers.set('bob', new Trip('bob'));
+            expect(main.onTripCommand('bob', fakeData.startTime, fakeData.stopTime, fakeData.distance)).toEqual(fakeData);
+            expect(mockAddTrip).toHaveBeenCalledWith(fakeData);
+            expect(main.onTripCommand('bob', fakeData.startTime, fakeData.stopTime, fakeData.distance)).toEqual(fakeData);
+            expect(mockAddTrip).toHaveBeenCalledTimes(2);
         });
     });
 });

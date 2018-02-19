@@ -25,5 +25,13 @@ export default class Main {
     onTripCommand(name, startTime, stopTime, distance) {
         const driver = this.drivers.get(name);
         if (!driver) return false;
+        const tripObj = {
+            startTime,
+            stopTime,
+            distance,
+        };
+
+        driver.addTrip(tripObj);
+        return tripObj;
     }
 }

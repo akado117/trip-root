@@ -22,6 +22,6 @@
 * trips - A map of trip objects keyed by Trip owner name (this.trips)
 * parseFileInput - Parses through string returned from file read in
 * onDriveCommand - Creates new Trip and adds to internal Map, keyed by name
-* onTripCommand - Returns error if Trip owner isn't in map, otherwise sets Trip entry within Trip Object
+* onTripCommand - Returns false if Trip owner isn't in map, otherwise sets Trip entry within Trip Object (this means any trip commands without a valid owner are discarded)
 * getTripAverages - Returns array of tripAverage objects (name, totalDistance, averageSpeed) based upon trips within this.trips
 * parseTripAveragesToString - Returns a string based upon the tripAverage objects fed into it. 
