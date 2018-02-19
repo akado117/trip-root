@@ -105,5 +105,19 @@ describe('Main Class', () => {
             expect(main.parseDriverAveragesToString('adasdasd')).toBe('No drivers found');
             expect(main.parseDriverAveragesToString([])).toBe('No drivers found');
         });
+        it('should return string with new lines for each driverAverage object it parses', () => {
+            const input = [{
+                name: 'ben',
+                totalDistance: 14,
+                averageSpeed: 30,
+            },{
+                name: 'bob',
+                totalDistance: 25,
+                averageSpeed: 60,
+            }];
+            const parsedOutput = main.parseDriverAveragesToString(input);
+            expect(parsedOutput.split('\n').length).toBe(2);
+            expect(parsedOutput).toBe('ben: 14 mile @ 30 mph\nbob: 25 mile @ 60 mph');
+        });
     });
 });

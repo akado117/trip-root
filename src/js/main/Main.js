@@ -50,5 +50,13 @@ export default class Main {
     }
     parseDriverAveragesToString(driverAverages) {
         if (typeof driverAverages !== 'object' || !driverAverages.length) return 'No drivers found';
+        let driverAveragesString = '';
+
+        driverAverages.forEach((driverAverage, idx) => {
+            const { name, totalDistance, averageSpeed } = driverAverage;
+            driverAveragesString += `${name}: ${totalDistance} mile @ ${averageSpeed} mph${idx < driverAverages.length - 1 ? '\n' : ''}`;
+        });
+
+        return driverAveragesString;
     }
 }
