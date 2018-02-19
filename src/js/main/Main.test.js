@@ -1,9 +1,19 @@
 import Main from './Main';
+import Trip from '../trip/Trip';
+
+jest.mock('../trip/Trip', () => {
+    return jest.fn().mockImplementation(() => {
+        return {};
+        // Now we can track calls to playSoundFile
+    });
+});
+
 
 describe('Main Class', () => {
     let main;
     beforeEach(() => {
         main = new Main();
+        Trip.mockClear();
     });
     describe('constructor', () => {
         it('instantiating the class should initialize trips to be a map', () => {
@@ -21,6 +31,13 @@ describe('Main Class', () => {
             expect(main.parseFileInput(sampleInput)[0].length).toBe(2);
             expect(main.parseFileInput(sampleInput)[4].length).toBe(5);
             expect(main.parsedInput.length).toBe(6);
+        });
+    });
+    describe('onDriveCommand', () => {
+        it('should create a new instance of Trip with the passed in name and add it to trips map by its name', () => {
+            main.onDriveCommand('spencer');
+            expect(Trip).toHaveBeenCalledTimes(1);
+            expect(Trip).toHaveBeenCalledWith('spencer');
         });
     });
 });

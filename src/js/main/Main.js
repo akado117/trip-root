@@ -1,3 +1,10 @@
+import Trip from '../trip/Trip';
+
+const commandConstants = {
+    DRIVER: 'driver',
+    TRIP: 'trip',
+};
+
 export default class Main {
     constructor() {
         this.trips = new Map();
@@ -10,5 +17,8 @@ export default class Main {
         this.parsedInput = finalSplitCommands;
 
         return finalSplitCommands;
+    }
+    onDriveCommand(name) {
+        this.trips.set(name, new Trip(name));
     }
 }
