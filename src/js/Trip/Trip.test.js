@@ -10,6 +10,10 @@ describe('Trip Class', () => {
             const trip = new Trip('Some name')
             expect(trip.name).toBe('Some name');
         })
+        it('should initialize trips Map', () => {
+            const trip = new Trip()
+            expect(trip.trips).toEqual(new Map());
+        })
 
     });
 })
