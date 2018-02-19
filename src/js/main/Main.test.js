@@ -116,6 +116,7 @@ describe('Main Class', () => {
                 averageSpeed: 60,
             }];
             const parsedOutput = main.parseDriverAveragesToString(input);
+
             expect(parsedOutput.split('\n').length).toBe(2);
             expect(parsedOutput).toBe('ben: 14 mile @ 30 mph\nbob: 25 mile @ 60 mph');
         });
@@ -127,15 +128,24 @@ describe('Main Class', () => {
         });
         it('should not call any commands if the commands fed in don\'t exist', () => {
             main.applyCommandsArray([]);
+            main.applyCommandsArray([['any', 'value']]);
+
             expect(main.onDriveCommand).toHaveBeenCalledTimes(0);
             expect(main.onTripCommand).toHaveBeenCalledTimes(0);
         });
         it('should call onTripCommand for any commands that contain the trip command', () => {
             const input = [['trip', 'dan', 'davito', 'is', 'sunny']];
             main.applyCommandsArray(input);
+
             for (let i = 0; i < 4; i++) {
                 expect(main.onTripCommand.mock.calls[0][i]).toBe(input[0][i + 1]);
             }
+        });
+        it('should call onDriveCommand for any commands that contain the driver command', () => {
+            const input = [['driver', 'dan']];
+            main.applyCommandsArray(input);
+
+            expect(main.onDriveCommand.mock.calls[0][0]).toBe(input[0][1]);
         });
     });
 });
