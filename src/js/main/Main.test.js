@@ -1,3 +1,4 @@
+import { cloneDeep } from 'lodash';
 import Main from './Main';
 import Trip from '../driver/Driver';
 const mockAddTrip = jest.fn();
@@ -100,25 +101,32 @@ describe('Main Class', () => {
         });
     });
     describe('parseTripAveragesToString', () => {
+        const input = [{
+            name: 'ben',
+            totalDistance: 14,
+            averageSpeed: 30,
+        },{
+            name: 'bob',
+            totalDistance: 25,
+            averageSpeed: 60,
+        }];
         it('should return "No drivers found" if there are no driverAverage objects passed in', () => {
             expect(main.parseDriverAveragesToString()).toBe('No drivers found');
             expect(main.parseDriverAveragesToString('adasdasd')).toBe('No drivers found');
             expect(main.parseDriverAveragesToString([])).toBe('No drivers found');
         });
         it('should return string with new lines for each driverAverage object it parses', () => {
-            const input = [{
-                name: 'ben',
-                totalDistance: 14,
-                averageSpeed: 30,
-            },{
-                name: 'bob',
-                totalDistance: 25,
-                averageSpeed: 60,
-            }];
+
             const parsedOutput = main.parseDriverAveragesToString(input);
 
             expect(parsedOutput.split('\n').length).toBe(2);
-            expect(parsedOutput).toBe('ben: 14 mile @ 30 mph\nbob: 25 mile @ 60 mph');
+            expect(parsedOutput).toBe('ben: 14 miles @ 30 mph\nbob: 25 miles @ 60 mph');
+        });
+        it('should handle when there is no distance or speed', () => {
+            const clonedInput = cloneDeep(input);
+            clonedInput[0].totalDistance = 0;
+            const parsedOutput = main.parseDriverAveragesToString(clonedInput);
+            expect(parsedOutput).toBe('ben: 0 miles\nbob: 25 miles @ 60 mph');
         });
     });
     describe('applyCommandsArray', () => {

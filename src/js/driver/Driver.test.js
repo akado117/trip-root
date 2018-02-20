@@ -81,7 +81,7 @@ describe('Driver Class', () => {
             driverObj.drivers = new Map([[0, tripClone], [1, tripClone]]);
         });
         it('should use internal totalTravelDistance if not passed in', () => {
-            driverObj.totalTravelDistance = 180
+            driverObj.totalTravelDistance = 180;
 
             expect(driverObj.getAverageSpeed()).toBe(60);
         });

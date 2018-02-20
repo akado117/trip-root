@@ -54,7 +54,8 @@ export default class Main {
 
         driverAverages.forEach((driverAverage, idx) => {
             const { name, totalDistance, averageSpeed } = driverAverage;
-            driverAveragesString += `${name}: ${totalDistance} mile @ ${averageSpeed} mph${idx < driverAverages.length - 1 ? '\n' : ''}`;
+            const speedString = totalDistance && averageSpeed ? ` @ ${averageSpeed} mph` : '';
+            driverAveragesString += `${name}: ${totalDistance} miles${speedString}${idx < driverAverages.length - 1 ? '\n' : ''}`;
         });
 
         return driverAveragesString;
