@@ -128,6 +128,13 @@ describe('Main Class', () => {
             const parsedOutput = main.parseDriverAveragesToString(clonedInput);
             expect(parsedOutput).toBe('ben: 0 miles\nbob: 25 miles @ 60 mph');
         });
+        it('Should parse fractional values to whole numbers', () => {
+            const clonedInput = cloneDeep(input);
+            clonedInput[0].totalDistance = 24.623;
+            clonedInput[1].averageSpeed = 80.123213;
+            const parsedOutput = main.parseDriverAveragesToString(clonedInput);
+            expect(parsedOutput).toBe('ben: 25 miles @ 30 mph\nbob: 25 miles @ 80 mph');
+        });
     });
     describe('applyCommandsArray', () => {
         beforeEach(() => {

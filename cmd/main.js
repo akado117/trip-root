@@ -167,7 +167,8 @@ var Main = function () {
                     totalDistance = driverAverage.totalDistance,
                     averageSpeed = driverAverage.averageSpeed;
 
-                driverAveragesString += name + ': ' + totalDistance + ' mile @ ' + averageSpeed + ' mph' + (idx < driverAverages.length - 1 ? '\n' : '');
+                var speedString = totalDistance && averageSpeed ? ' @ ' + averageSpeed + ' mph' : '';
+                driverAveragesString += name + ': ' + totalDistance + ' miles' + speedString + (idx < driverAverages.length - 1 ? '\n' : '');
             });
 
             return driverAveragesString;
@@ -243,7 +244,7 @@ var Driver = function () {
 
             if (!startTime || !stopTime || !distance) return false;
 
-            var tripToSet = { startTime: startTime, stopTime: stopTime, distance: distance };
+            var tripToSet = { startTime: startTime, stopTime: stopTime, distance: parseFloat(distance) };
             tripToSet.travelTime = (0, _difference_in_minutes2.default)('2 July 2014 ' + stopTime, '2 July 2014 ' + startTime); //using this util as in a real world case it'd likely be dates
 
             this.drivers.set(this.drivers.size, tripToSet);
