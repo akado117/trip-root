@@ -167,8 +167,8 @@ var Main = function () {
                     totalDistance = driverAverage.totalDistance,
                     averageSpeed = driverAverage.averageSpeed;
 
-                var speedString = totalDistance && averageSpeed ? ' @ ' + averageSpeed + ' mph' : '';
-                driverAveragesString += name + ': ' + totalDistance + ' miles' + speedString + (idx < driverAverages.length - 1 ? '\n' : '');
+                var speedString = totalDistance && averageSpeed ? ' @ ' + averageSpeed.toFixed(0) + ' mph' : '';
+                driverAveragesString += name + ': ' + totalDistance.toFixed(0) + ' miles' + speedString + (idx < driverAverages.length - 1 ? '\n' : '');
             });
 
             return driverAveragesString;

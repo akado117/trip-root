@@ -1,13 +1,14 @@
 # Node Trip Aggregator
 
 ### General Architecture
-1. No database or service calls. All data will be stored in memory. Trip class contains user name, and an array of trips user has taken. Also contains functions to return average speed and total miles driven
-2. File IO handled with node package fs. Assumed to be using input files small enough to be handled in memory.
+1. No database or service calls. All data will be stored in memory. Trip class contains driver name, and an array of trips user has taken. Also contains functions to return average speed and total miles driven
+2. File IO handled with npm package fs. Assumed to be using input files small enough to be handled in memory.
 3. A main class will be used to house functionality performed on multiple trip objects.
 4. Webpack used to transpile class code into a npm package. 
 5. A non-transpiled file will be used to consume transpiled npm package and expose to node command line
 6. Jest is used in a TDD methodology to build out this project.
 7. Project has very minor type checking. Typescript can aid in javascripts lack of typing, but tests/variable names/ and readme are fairly clear on types expected.
+8. Majority of class structure laid out in README before implementation began.
 
 ### Driver Class Outline
 * name - Name of trip owner
@@ -27,3 +28,11 @@
 * getDriverAverages - Returns array of driverAverage objects (name, totalDistance, averageSpeed) based upon trips within this.drivers
 * parseDriverAveragesToString - Returns a string based upon the tripAverage objects fed into it.
 * applyCommandsArray - Takes parsedFileInput and runs calls mains functions based on commands in the array 
+
+### Scripts and Running
+Built using node version v8.9.4 and npm version 5.6.0
+* `runDriverCommands` - Runs command line program. Follow onscreen prompt to enter file path and press enter. Then watch the magic!
+* `npm install` - Installs needed dependencies for commands other than `runDriverCommands` to work 
+* `test` - Runs any tests within any files that have .test in their name. Will continue to watch files for updates and will rerun any tests that would be impacted by these changes.
+* `buildCMD` - Used to transpile main.js and its dependencies into a single npm package that can be consumed by a command line utility for node.
+* `buildAndRun` - Runs both `buildCMD` then `runDriverCommands` in one simple script. Used when making code changes and running a final test. 
