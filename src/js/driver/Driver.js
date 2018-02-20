@@ -13,7 +13,7 @@ export default class Driver {
         const { startTime, stopTime, distance } = tripData;
         if (!startTime || !stopTime || !distance) return false;
 
-        const tripToSet = { startTime, stopTime, distance };
+        const tripToSet = { startTime, stopTime, distance: parseFloat(distance) };
         tripToSet.travelTime = differenceInMinutes(`2 July 2014 ${stopTime}`, `2 July 2014 ${startTime}`);//using this util as in a real world case it'd likely be dates
 
         this.drivers.set(this.drivers.size, tripToSet);

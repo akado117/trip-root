@@ -59,7 +59,12 @@ describe('Driver Class', () => {
             tripClone.travelTime = 90;
             expect(driverObj.addTrip(tripData)).toEqual(tripClone);
         });
-    })
+        it('should convert string distances into numbers', () => {
+            let tripClone = cloneDeep(tripData);
+            tripClone.distance = '42';
+            expect(driverObj.addTrip(tripClone).distance).toBe(42);
+        });
+    });
     describe('getTotalDistance', () => {
         it('should return total distance of drivers within driver object, and set it to this.totalTravelDistance', () => {
             driverObj.drivers = new Map([[0, tripData], [1, tripData]]);
